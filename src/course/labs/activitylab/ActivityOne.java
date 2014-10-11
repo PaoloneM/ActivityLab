@@ -29,10 +29,10 @@ public class ActivityOne extends Activity {
 	// to count calls to onCreate(), onRestart(), onStart() and
 	// onResume(). These variables should not be defined as static.
 
-	int mCreate = 0;   // onCreate() method calls counter
-	int mRestart = 0;  // onRestart() method calls counter
-	int mStart = 0;    // onStart() method calls counter
-	int mResume = 0;   // onResume() method calls counter
+	private int mCreate = 0;   // onCreate() method calls counter
+	private int mRestart = 0;  // onRestart() method calls counter
+	private int mStart = 0;    // onStart() method calls counter
+	private int mResume = 0;   // onResume() method calls counter
 	
 	// You will need to increment these variables' values when their
 	// corresponding lifecycle methods get called.
@@ -68,11 +68,19 @@ public class ActivityOne extends Activity {
 				// TODO:
 				// Launch Activity Two
 				// Hint: use Context's startActivity() method
-				Context mContext = ActivityOne.this.getBaseContext();
+				// Context mContext = ActivityOne.this.getBaseContext();  // First working solution
+				Context mContext = v.getContext();
+				Context mContextAlt = ActivityOne.this;
+				Context mContextMyWay = ActivityOne.this.getBaseContext();
+				Context mContextApp = ActivityOne.this.getApplicationContext();
+				Log.d(TAG, "v.getContext() --> " + mContext.toString());
+				Log.d(TAG, "ActivityOne.this --> " + mContextAlt.toString());
+				Log.d(TAG, "ActivityOne.this.getBaseContext() --> " + mContextMyWay.toString());
+				Log.d(TAG, "ActivityOne.this.getApplicationContext(); --> " + mContextApp.toString());
 				// Create an intent stating which Activity you would like to
 				// start
-				Intent intent = new Intent(mContext, ActivityTwo.class);
-
+				Intent intent = new Intent(mContextMyWay, ActivityTwo.class);
+				
 				// Launch the Activity using the intent
 				startActivity(intent);
 			}
@@ -92,8 +100,9 @@ public class ActivityOne extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mCreate++;
 		// Update the user interface via the displayCounts() method
-
+        this.displayCounts();
 	}
 
 	// Lifecycle callback overrides
@@ -107,8 +116,9 @@ public class ActivityOne extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mStart++;
 		// Update the user interface
-
+		this.displayCounts();
 	}
 
 	@Override
@@ -120,8 +130,9 @@ public class ActivityOne extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mResume++;
 		// Update the user interface
-
+		this.displayCounts();
 	}
 
 	@Override
@@ -149,8 +160,9 @@ public class ActivityOne extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mRestart++;
 		// Update the user interface
-
+		this.displayCounts();
 	}
 
 	@Override

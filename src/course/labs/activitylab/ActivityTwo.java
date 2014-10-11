@@ -28,10 +28,10 @@ public class ActivityTwo extends Activity {
 	// to count calls to onCreate(), onRestart(), onStart() and
 	// onResume(). These variables should not be defined as static.
 
-	int mCreate = 0;   // onCreate() method calls counter
-	int mRestart = 0;  // onRestart() method calls counter
-	int mStart = 0;    // onStart() method calls counter
-	int mResume = 0;   // onResume() method calls counter
+	private int mCreate = 0;   // onCreate() method calls counter
+	private int mRestart = 0;  // onRestart() method calls counter
+	private int mStart = 0;    // onStart() method calls counter
+	private int mResume = 0;   // onResume() method calls counter
 	
 	// You will need to increment these variables' values when their
 	// corresponding lifecycle methods get called.
@@ -57,10 +57,10 @@ public class ActivityTwo extends Activity {
 		// Hint: Access the TextView by calling Activity's findViewById()
 		// textView1 = (TextView) findViewById(R.id.textView1);
 
-
-		
-		
-		
+		mTvCreate = (TextView) findViewById(R.id.create);
+		mTvRestart = (TextView) findViewById(R.id.restart);
+		mTvStart = (TextView) findViewById(R.id.start);
+		mTvResume = (TextView) findViewById(R.id.resume);
 		
 		Button closeButton = (Button) findViewById(R.id.bClose); 
 		closeButton.setOnClickListener(new OnClickListener() {
@@ -71,8 +71,8 @@ public class ActivityTwo extends Activity {
 				// TODO:
 				// This function closes Activity Two
 				// Hint: use Context's finish() method
-				ActivityTwo.this.finish();
-
+				ActivityTwo.this.finish();             // First working solution
+				
 			}
 		});
 
@@ -95,8 +95,9 @@ public class ActivityTwo extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mCreate++;
 		// Update the user interface via the displayCounts() method
-
+		this.displayCounts();
 
 		
 		
@@ -113,8 +114,9 @@ public class ActivityTwo extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mStart++;
 		// Update the user interface
-
+		this.displayCounts();
 
 		
 		
@@ -129,8 +131,9 @@ public class ActivityTwo extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mResume++;
 		// Update the user interface
-
+		this.displayCounts();
 
 	
 	}
@@ -160,8 +163,9 @@ public class ActivityTwo extends Activity {
 
 		// TODO:
 		// Update the appropriate count variable
+		mRestart++;
 		// Update the user interface
-
+		this.displayCounts();
 
 	
 	
